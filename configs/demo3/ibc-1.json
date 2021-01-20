@@ -1,8 +1,8 @@
 {
   "key": "testkey",
-  "chain-id": "ibc-1",
+  "chain-id": "iris",
   "rpc-addr": "http://localhost:26557",
-  "account-prefix": "akash",
+  "account-prefix": "iaa",
   "gas-adjustment": 1.5,
   "gas-prices": "0.025stake",
   "trusting-period": "336h"
