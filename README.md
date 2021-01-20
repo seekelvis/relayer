@@ -56,14 +56,10 @@ rly tx relay demo -d
 **通过 relayer 转账**
 
 ```bash
+#atom  
 rly tx transfer atom iris 1000000samoleans $(rly chains address iris)
 rly tx transfer iris akash 1000000ibc/27A6394C3F9FF9C9DCF5DFFADF9BB5FE9A37C7E92B006199894CF1824DF9AC7C $(rly chains address akash)
 rly tx transfer akash iris 1000000ibc/F47F0D7C9B4F7D971DF647A75A80CB8D905D3230262FEF2996340664D3A12D48 $(rly chains address iris)
-rly tx transfer iris atom 1000000ibc/27A6394C3F9FF9C9DCF5DFFADF9BB5FE9A37C7E92B006199894CF1824DF9AC7C $(rly chains address atom)
-
-rly tx transfer iris akash 1000000samoleans $(rly chains address akash)
-
-rly tx transfer atom iris 1000000samoleans $(rly chains address iris)
 rly tx transfer iris atom 1000000ibc/27A6394C3F9FF9C9DCF5DFFADF9BB5FE9A37C7E92B006199894CF1824DF9AC7C $(rly chains address atom)
 ```
 
@@ -79,6 +75,28 @@ gaiad tx ibc-transfer transfer transfer channel-0 $(rly keys show iris) 1000000s
     --chain-id atom \
     --node tcp://localhost:26657 \
     --broadcast-mode block \
+    -y
+
+iris tx ibc-transfer transfer transfer channel-1 $(rly keys show akash) 1000000ibc/27A6394C3F9FF9C9DCF5DFFADF9BB5FE9A37C7E92B006199894CF1824DF9AC7C \
+    --absolute-timeouts \
+    --packet-timeout-timestamp 0 \
+    --from user \
+    --home data/iris \
+    --keyring-backend test \
+    --node tcp://localhost:26557 \
+    --broadcast-mode block \
+    --chain-id iris \
+    -y
+    
+akash tx ibc-transfer transfer transfer channel-0 $(rly keys show iris) 1000000ibc/F47F0D7C9B4F7D971DF647A75A80CB8D905D3230262FEF2996340664D3A12D48 \
+    --absolute-timeouts \
+    --packet-timeout-timestamp 0 \
+    --from user \
+    --home data/akash \
+    --keyring-backend test \
+    --node tcp://localhost:25557 \
+    --broadcast-mode block \
+    --chain-id akash \
     -y
 
 iris tx ibc-transfer transfer transfer channel-0 $(rly keys show atom) 1000000ibc/27A6394C3F9FF9C9DCF5DFFADF9BB5FE9A37C7E92B006199894CF1824DF9AC7C \
